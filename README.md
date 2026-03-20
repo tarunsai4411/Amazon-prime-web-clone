@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Amazon Prime Web App Clone Deployment Project
 ![Pipeline Overview](./src/Overview.png)
 
