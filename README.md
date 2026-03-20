@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Amazon Prime Web App Clone Deployment Project
 ![Pipeline Overview](./src/Overview.png)
 
@@ -338,3 +339,6 @@ pipeline {
 **We can access the application by using the link given by argoCD or we can configure route53 for coustom domain**
 
 ---
+=======
+# Amazon-prime-web-clone
+>>>>>>> ae7ba1ae34980bdc6c4e4b9a35c9de52a604e7e7
