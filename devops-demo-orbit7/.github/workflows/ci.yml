@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        working-directory: devops-demo-orbit7
+        run: |
+          docker build -t devops-demo-orbit7:${{ github.sha }} .
+
+      - name: Smoke test container (GET /health)
+        run: |
+          docker run -d --name devops-test -p 8000:8000 devops-demo-orbit7:${{ github.sha }}
+          
+          for i in {1..25}; do
+            if curl -fsS http://localhost:8000/health >/dev/null; then
+              echo "Healthcheck passed"
+              exit 0
+            fi
+            sleep 1
+          done
+
+          echo "Healthcheck failed"
+          docker logs devops-test || true
+          exit 1
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f devops-test || true
+

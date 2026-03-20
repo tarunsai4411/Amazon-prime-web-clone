@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nithin-prime-app
+  labels:
+    app: nithin-prime-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nithin-prime-app
+  template:
+    metadata:
+      labels:
+        app: nithin-prime-app
+    spec:
+      containers:
+      - name: nithin-prime-container
+        image: 626635421473.dkr.ecr.us-east-1.amazonaws.com/amazon-prime:latest
+        ports:
+        - containerPort: 3000
+...
